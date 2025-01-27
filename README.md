@@ -5,17 +5,22 @@ This is a starter kit for wordpress theme and plugin development environment by 
 ## Used tools
 
 1. `Docker` for containerization
-2. `Nginx` as web server
-3. `PHP` programming languege
-4. `MariaDB` database
-5. `phpMyAdmin` database administration
+2. `Wordpress` web content management system
+3. `MariaDB` database
+4. `PHPMyAdmin` database administration
 
 ## Usage
 
 Make sure docker is installed on your machine and run this line:
 
 ```
-docker-compose up --build --force-recreate -d
+docker-compose up -d
 ```
 
-After that you can easily access your wordpress website on your [localhost](http://localhost)
+After that you can easily access your Wordpress website on your [localhost:8000](http://localhost:8000) and PHPMyAdmin on [localhost:8001](http://localhost:8001)
+
+For using as a development tool and changing files with your user use:
+
+```
+chmod 777 -R wordpress
+```

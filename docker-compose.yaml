@@ -1,0 +1,50 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    restart: always
+    environment:
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_TABLE_PREFIX=wp_
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=password
+    networks:
+      - mariadb_network
+    ports:
+      - 8000:80
+    volumes:
+      - ./wordpress:/var/www/html
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+    networks:
+      - mariadb_network
+    volumes:
+      - mariadb_volume:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - 8001:80
+    networks:
+      - mariadb_network
+
+networks:
+  mariadb_network:
+    driver: bridge
+
+volumes:
+  mariadb_volume:
