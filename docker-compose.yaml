@@ -44,8 +44,9 @@ services:
     ports:
       - 8002:80
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+      - PMA_HOST=mariadb
+      - PMA_USER=root
+      - PMA_PASSWORD=password
   
 networks:
   mariadb_network:
